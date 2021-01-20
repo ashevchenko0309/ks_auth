@@ -35,7 +35,7 @@ After, you can login to admin UI with this creds, and create/update/delete users
 
 ## Custom fields
 ### Why?
-Field's like `createdAt` & `updatedAt` created as fields with hooks to update the date after some changes have been added. These fields are hidden to the user, and cannot be edited by user. After all, by default `DateTime` & `DateTimeUtc` include additional such as `{date}_utc`, `{date}_offset`. We already have DB schemas, and these fields are not in these schemas.
+Field's like `createdAt` & `updatedAt` created as fields with hooks to update the date after some changes have been added. These fields are hidden to the user, and cannot be edited by user. After all, by default `DateTime` & `DateTimeUtc` include additional fields such as `{date}_utc`, `{date}_offset`. We already have DB schemas, and these fields are not in these schemas.
 ### Where?
 1) createdAt - `./custom-fields/createdAt.field.js`
 2) updatedAt - `./custom-fields/updatedAt.field.js`
