@@ -1,0 +1,1 @@
+module.exports = userIsAdmin = ({ authentication: { item: user } }) => Boolean(user && user.role === "admin");
