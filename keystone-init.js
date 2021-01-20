@@ -4,8 +4,6 @@ const { PasswordAuthStrategy } = require("@keystonejs/auth-password")
 
 const KeystoneConstants = require("./constants/keystone.constants")
 
-const initialiseData = require("./initial-data")
-
 class KeystoneInit {
   constructor() {
     this.keystone = null
@@ -23,7 +21,6 @@ class KeystoneInit {
   initAdapter() {
     this.keystone = new Keystone({
       adapter: new Adapter(this.adapterConfig),
-      onConnect: process.env.CREATE_TABLES !== "true" && initialiseData,
     });
 
     return this
@@ -33,7 +30,10 @@ class KeystoneInit {
     const auth = this.keystone.createAuthStrategy({
       type: PasswordAuthStrategy,
       list: KeystoneConstants.AUTH_DB_LIST,
-      config: { protectIdentities: process.env.NODE_ENV === "production" },
+      config: { 
+        protectIdentities: process.env.NODE_ENV === "production",
+        secretField: KeystoneConstants.SECRET_USER_COLUMN,
+       },
     });
 
     this.authStrategy = auth

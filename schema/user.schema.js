@@ -1,6 +1,6 @@
-const { Text, Password, Checkbox, Select } = require("@keystonejs/fields")
-const { AutoIncrement } = require("@keystonejs/fields-auto-increment");
-const { atTracking } = require("@keystonejs/list-plugins")
+const { Text, Password, Checkbox, Select, DateTimeUtc } = require("@keystonejs/fields")
+const createdAt = require("../custom-fields/createdAt.field")
+const updatedAt = require("../custom-fields/updatedAt.field")
 const isAdmin = require("../access-control/is-admin")
 
 module.exports = {
@@ -10,6 +10,12 @@ module.exports = {
       isUnique: true,
       isRequired: true,
     },
+    passwordHash: {
+      type: Password,
+      isRequired: true,
+    },
+    createdAt,
+    updatedAt,
     role: {
       type: Select,
       options: ["trainee", "trainer", "admin"],
@@ -19,26 +25,15 @@ module.exports = {
         update: isAdmin,
       },
     },
-    password: {
-      type: Password,
-      isRequired: true,
-    },
     isEmailConfirmed: {
       type: Checkbox,
       defaultValue: false,
     },
-    usersPkey: {
-      type: AutoIncrement,
-      gqlType: "Int",
-      isUnique: true,
-    }
   },
-  plugins: [
-    atTracking(),
-  ],
-  // List-level access controls
+  plural: "_Users",
+  label: "Users",
   access: {
-    read: isAdmin,
+    read: true,
     update: isAdmin,
     create: isAdmin,
     delete: isAdmin,

@@ -7,7 +7,7 @@ module.exports = async keystone => {
     context: keystone.createContext({ skipAccessControl: true }),
     query: `
       query {
-        _allUsersMeta {
+        _allUserssMeta {
           count
         }
       }
@@ -23,7 +23,7 @@ module.exports = async keystone => {
       context: keystone.createContext({ skipAccessControl: true }),
       query: `
         mutation initialUser($password: String, $email: String, $role: String) {
-          createUser(data: {email: $email, role: $role, password: $password}) {
+          createUser(data: {email: $email, role: $role, passwordHash: $password}) {
             id
           }
         }
