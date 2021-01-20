@@ -14,8 +14,8 @@ module.exports = {
       type: Password,
       isRequired: true,
     },
-    createdAt: { ...createdAt, },
-    updatedAt: { ...updatedAt, },
+    createdAt,
+    updatedAt,
     role: {
       type: Select,
       options: ["trainee", "trainer", "admin"],
