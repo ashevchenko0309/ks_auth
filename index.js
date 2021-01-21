@@ -1,5 +1,5 @@
 const { GraphQLApp } = require("@keystonejs/app-graphql")
-const { AdminUIApp } = require("@keystonejs/app-admin-ui")
+const { AdminUIApp } = require("it-custom-admin-ui-app")
 const KeystoneInit = require("./keystone-init")
 const { UserSchema } = require("./schema")
 
@@ -8,7 +8,9 @@ const KeystoneConstants = require("./constants/keystone.constants")
 
 const { keystone, authStrategy } = new KeystoneInit()
   .initAdapter()
-  .initLists([{ name: "users", schema: UserSchema, }])
+  .initLists([
+    { name: "users", schema: UserSchema, },
+  ])
   .initAuthStrategy()
 
 module.exports = {

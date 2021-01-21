@@ -24,6 +24,7 @@
     "@keystonejs/fields": "^21.0.0",
     "@keystonejs/keystone": "^18.0.0",
     "@keystonejs/list-plugins": "^7.1.5",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "it-custom-admin-ui-app": "git+https://github.com/ashevchenko0309/it-custom-admin-ui-app.git"
   }
 }
