@@ -13,6 +13,7 @@ module.exports = {
     passwordHash: {
       type: Password,
       isRequired: true,
+      label: "Password",
     },
     createdAt,
     updatedAt,
@@ -30,7 +31,8 @@ module.exports = {
       defaultValue: false,
     },
   },
-  plural: "_Users",
+  labelField: "zcxzxczxcxzc",
+  plural: "users",
   label: "Users",
   access: {
     read: true,
@@ -38,5 +40,11 @@ module.exports = {
     create: isAdmin,
     delete: isAdmin,
     auth: true,
+  },
+  adminConfig: {
+    defaultColumns: 'id,email,passwordHash',
+    defaultPageSize: 50,
+    defaultSort: 'id',
+    maximumPageSize: 100,
   },
 }

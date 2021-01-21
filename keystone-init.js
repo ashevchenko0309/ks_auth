@@ -30,10 +30,17 @@ class KeystoneInit {
     const auth = this.keystone.createAuthStrategy({
       type: PasswordAuthStrategy,
       list: KeystoneConstants.AUTH_DB_LIST,
-      config: { 
+      config: {
         protectIdentities: process.env.NODE_ENV === "production",
         secretField: KeystoneConstants.SECRET_USER_COLUMN,
-       },
+      },
+      hooks: {
+        afterAuth: ({ item, context }) => {
+          if(context.req.headers.referer.indexOf(KeystoneConstants.ADMIN_REFERER) && item.role !== "admin"){
+            throw new Error("Access not allowed")
+          }
+        }
+      }
     });
 
     this.authStrategy = auth
@@ -41,8 +48,8 @@ class KeystoneInit {
     return this
   }
 
-  initLists(lists){
-    lists.forEach(({name, schema}) => {
+  initLists(lists) {
+    lists.forEach(({ name, schema }) => {
       this.keystone.createList(name, schema)
     })
     return this

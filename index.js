@@ -8,7 +8,9 @@ const KeystoneConstants = require("./constants/keystone.constants")
 
 const { keystone, authStrategy } = new KeystoneInit()
   .initAdapter()
-  .initLists([{ name: "users", schema: UserSchema, }])
+  .initLists([
+    { name: "users", schema: UserSchema, },
+  ])
   .initAuthStrategy()
 
 module.exports = {
