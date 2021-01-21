@@ -1,5 +1,5 @@
 const { GraphQLApp } = require("@keystonejs/app-graphql")
-const { AdminUIApp } = require("@keystonejs/app-admin-ui")
+const { AdminUIApp } = require("it-custom-admin-ui-app")
 const KeystoneInit = require("./keystone-init")
 const { UserSchema } = require("./schema")
 
